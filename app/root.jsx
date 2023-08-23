@@ -10,13 +10,16 @@ import styles from '~/styles/index.css'
 import normalize from '~/styles/normalize.css'
 import font from '~/assets/fonts/Outfit-VariableFont_wght.ttf'
 import favicon from '../public/img/logo.svg'
-import Header from '~/components/header/header'
+
+import Header from '~/components/header'
+import Footer from '~/components/footer'
 
 export function meta() {
     return (
         [
             { charset: 'utf-8' },
             { title: 'GuitarLA - Remix' },
+            { description: 'Venta de guitarras' },
             { viewport: 'width=device-width, initial-scale=1' },
         ]
     )
@@ -63,7 +66,7 @@ function Document({ children }) {
                 <LiveReload />
                 <Header />
                 {children}
-
+                <Footer />
                 <Scripts />
             </body>
         </html>

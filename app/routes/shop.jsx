@@ -1,4 +1,8 @@
-import React from 'react'
+
+export function loader() {
+    console.log('From loader')
+    return {}
+}
 
 function Shop() {
     return (
