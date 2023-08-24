@@ -157,3 +157,26 @@ main {
         margin: 0;
     }
 }
+
+.error,
+.error__link {
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 2.4rem;
+}
+
+.error__link {
+    display: block;
+    text-decoration: none;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 1rem;
+    width: 50%;
+    margin: 0 auto;
+    transition: background-color .3s ease-in, color .3s ease-in;
+}
+
+.error__link:hover {
+    background-color: var(--primary);
+    color: var(--black);
+}

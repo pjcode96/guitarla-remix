@@ -3,7 +3,10 @@ import {
     Links,
     Outlet,
     LiveReload,
-    Scripts
+    Scripts,
+    useRouteError,
+    isRouteErrorResponse,
+    Link
 } from '@remix-run/react'
 
 import styles from '~/styles/index.css'
@@ -19,8 +22,8 @@ export function meta() {
         [
             { charset: 'utf-8' },
             { title: 'GuitarLA - Remix' },
-            { description: 'Venta de guitarras' },
-            { viewport: 'width=device-width, initial-scale=1' },
+            { name: 'description', content: 'Venta de guitarras' },
+            { viewport: "width=device_width,initial-scale=1" }
         ]
     )
 }
@@ -71,4 +74,21 @@ function Document({ children }) {
             </body>
         </html>
     )
+}
+
+export function ErrorBoundary() {
+
+    const error = useRouteError();
+
+    if (isRouteErrorResponse(error)) {
+        return (
+            <Document>
+                <p className="error">
+                    {error.status} {error.statusText}
+                </p>
+
+                <Link className='error__link' to='/'>Volver a página principal</Link>
+            </Document>
+        )
+    }
 }

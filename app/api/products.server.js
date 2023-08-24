@@ -4,9 +4,8 @@ export async function getProducts() {
     return products.data;
 }
 
-export async function getProduct(id) {
-    const response = await fetch(`${process.env.API_URL}/product/${id}/?populate=image`, {
-        method: 'GET',
-
-    })
+export async function getProduct(url) {
+    const response = await fetch(`${process.env.API_URL}/products?filters[slug][$eq]=${url}&populate=image`)
+    const product = await response.json()
+    return product
 }
