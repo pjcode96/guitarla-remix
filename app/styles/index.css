@@ -180,3 +180,20 @@ main {
     background-color: var(--primary);
     color: var(--black);
 }
+
+.link {
+    display: block;
+    background-color: var(--black);
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+    padding: 1rem;
+    font-weight: 700;
+    border-radius: 1rem;
+    transition: color .3s ease-in, background-color .3s ease-in;
+}
+
+.link:hover {
+    background-color: var(--primary);
+    color: var(--black);
+}

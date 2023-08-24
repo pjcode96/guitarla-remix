@@ -22,7 +22,7 @@ export function meta() {
         [
             { charset: 'utf-8' },
             { title: 'GuitarLA - Remix' },
-            { name: 'description', content: 'Venta de guitarras' },
+            { description: 'Venta de guitarras' },
             { viewport: "width=device_width,initial-scale=1" }
         ]
     )
