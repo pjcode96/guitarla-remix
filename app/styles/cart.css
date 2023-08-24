@@ -1,0 +1,17 @@
+.cart__content {
+    display: grid;
+    gap: 5rem;
+}
+
+@media(min-width:768px) {
+    .cart__content {
+        grid-template-columns: 2fr 1fr;
+
+    }
+}
+
+.cart__resume {
+    background-color: #F9FAFB;
+    padding: 3rem;
+    border-radius: 1rem;
+}

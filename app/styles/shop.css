@@ -69,3 +69,36 @@
 .product__link:hover {
     background-color: #c56900;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form label {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.form select {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.form input[type="submit"] {
+    margin-top: 3rem;
+    border: none;
+    background-color: var(--black);
+    padding: 1rem;
+    border-radius: 1rem;
+    color: var(--white);
+    text-transform: uppercase;
+    transition: color .3s ease, background-color .3s ease;
+}
+
+.form input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--black);
+}

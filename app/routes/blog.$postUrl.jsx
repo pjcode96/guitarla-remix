@@ -33,7 +33,7 @@ function Post() {
 
     const post = useLoaderData();
 
-    const { title, image, content, slug, publishedAt } = post?.data[0]?.attributes
+    const { title, image, content, publishedAt } = post?.data[0]?.attributes
     return (
         <div className="post">
             <img src={image.data.attributes.url} alt={`Imagen del post ${title}`} />

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useLoaderData } from "@remix-run/react"
 import { getProduct } from "~/api/products.server";
 
@@ -29,6 +30,8 @@ export function meta({ data }) {
 
 function Product() {
 
+    const [amount, setAmount] = useState(0);
+
     const product = useLoaderData();
     const { name, description, price, image } = product.data[0].attributes
     return (
@@ -41,6 +44,26 @@ function Product() {
                     {description}
                 </p>
                 <p className="product__price">${price}</p>
+
+                <form className="form">
+                    <label htmlFor="quantity">Cantidad</label>
+                    <select
+                        id="quantity"
+                        onChange={(e) => setAmount(parseInt(e.target.value))}
+                    >
+                        <option value="">Seleccionar</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                    <input
+                        type="submit"
+                        value="Añadir al carrito"
+                    />
+                </form>
             </div>
         </div>
     )
