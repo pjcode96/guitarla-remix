@@ -53,16 +53,8 @@ export function links() {
 
 export default function App() {
 
-    const [cart, setCart] = useState([])
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const storedCart = JSON.parse(localStorage.getItem('cart'));
-            if (storedCart) {
-                setCart(storedCart);
-            }
-        }
-    }, []);
+    const cartLocalStorage = (typeof window !== 'undefined' && JSON.parse(localStorage.getItem('cart'))) || []
+    const [cart, setCart] = useState(cartLocalStorage)
 
     useEffect(
         () => {
@@ -73,8 +65,8 @@ export default function App() {
     )
 
     const addToCart = (product) => {
-        if (cart.some(curProduct => curProduct.id === product.id)) {
-            const newCart = cart.map(
+        if (cart?.some(curProduct => curProduct.id === product.id)) {
+            const newCart = cart?.map(
                 (curProduct) => {
                     if (curProduct.id === product.id) {
                         curProduct.amount = product.amount
@@ -102,7 +94,8 @@ export default function App() {
                     {
                         addToCart,
                         removeCartItem,
-                        cart
+                        setCart,
+                        cart,
                     }
                 }
             />
