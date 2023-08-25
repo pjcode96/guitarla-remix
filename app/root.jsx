@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
     Meta,
     Links,
@@ -51,9 +52,60 @@ export function links() {
 }
 
 export default function App() {
+
+    const [cart, setCart] = useState([])
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedCart = JSON.parse(localStorage.getItem('cart'));
+            if (storedCart) {
+                setCart(storedCart);
+            }
+        }
+    }, []);
+
+    useEffect(
+        () => {
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('cart', JSON.stringify(cart))
+            }
+        }, [cart]
+    )
+
+    const addToCart = (product) => {
+        if (cart.some(curProduct => curProduct.id === product.id)) {
+            const newCart = cart.map(
+                (curProduct) => {
+                    if (curProduct.id === product.id) {
+                        curProduct.amount = product.amount
+                    }
+                    return curProduct;
+                }
+            )
+            setCart(newCart)
+            return
+        }
+
+        setCart([...cart, product])
+    }
+
+    const removeCartItem = (id) => {
+        const updatedCart = cart.filter(product => product.id !== id)
+        setCart(updatedCart);
+    }
+
     return (
         <Document>
-            <Outlet />
+            <Outlet
+                context=
+                {
+                    {
+                        addToCart,
+                        removeCartItem,
+                        cart
+                    }
+                }
+            />
         </Document>
     )
 }

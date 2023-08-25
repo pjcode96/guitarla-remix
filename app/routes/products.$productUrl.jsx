@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useLoaderData } from "@remix-run/react"
+import { useLoaderData, useOutletContext } from "@remix-run/react"
 import { getProduct } from "~/api/products.server";
 
 export async function loader({ params }) {
@@ -30,10 +30,30 @@ export function meta({ data }) {
 
 function Product() {
 
+    const { addToCart } = useOutletContext()
     const [amount, setAmount] = useState(0);
 
     const product = useLoaderData();
     const { name, description, price, image } = product.data[0].attributes
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (amount < 1) {
+            alert('Es necesario que selecciones una cantidad');
+            return
+        }
+
+        const selectedProduct = {
+            id: product?.data[0]?.id,
+            image: image.data.attributes.url,
+            name,
+            price,
+            amount
+        }
+        addToCart(selectedProduct)
+    }
+
     return (
         <div className="product">
 
@@ -45,7 +65,10 @@ function Product() {
                 </p>
                 <p className="product__price">${price}</p>
 
-                <form className="form">
+                <form
+                    className="form"
+                    onSubmit={handleSubmit}
+                >
                     <label htmlFor="quantity">Cantidad</label>
                     <select
                         id="quantity"

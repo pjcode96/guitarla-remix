@@ -7,3 +7,5 @@ export const formatDate = (date) => {
     }
     return newDate.toLocaleDateString('es-ES', options)
 }
+
+export const getSubtotal = (price, amount) => (price * amount).toFixed(2)
